@@ -1,0 +1,50 @@
+.card {
+  height: 100%;
+  width: 100%;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  overflow: hidden;
+  transition: transform 0.2s ease; /* Animação para hover */
+}
+
+.card:hover {
+  transform: translateY(-4px); /* Efeito de "saltar" no hover */
+}
+
+.cardImage {
+  height: 180px;
+  width: 100%;
+  object-fit: cover; /* Ajuste da imagem para cobrir o espaço */
+  border-bottom: 2px solid #003366; /* Bordas com a cor primária */
+}
+
+.cardTitle {
+  font-size: 1.4rem;
+  color: #003366; /* Azul escuro */
+}
+
+.cardText {
+  color: #666; /* Texto secundário */
+}
+
+.cardFooter {
+  background-color: #f4f4f4;
+  text-align: end;
+  padding: 0.5rem 1rem;
+  border-top: 1px solid #e0e0e0;
+}
+
+.button {
+  background-color: #ff6600; /* Laranja */
+  border: none;
+  color: #fff;
+  font-weight: bold;
+  padding: 0.4rem 1rem;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #ff8800; /* Laranja um pouco mais claro */
+}

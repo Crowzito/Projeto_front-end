@@ -1,95 +1,96 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+"use client";
 
-export default function Home() {
+import React, { useEffect, useState } from "react";
+import { Button, Card, Col, Row } from "react-bootstrap";
+import Pagina from "./components/Pagina";
+import styles from "./HomePage.module.css"; // Arquivo CSS para estilização
+
+export default function HomePage() {
+  const [pecas, setPecas] = useState([]);
+  const [fornecedores, setFornecedores] = useState([]);
+  const [clientes, setClientes] = useState([]);
+  const [vendas, setVendas] = useState([]);
+  const [funcionarios, setFuncionarios] = useState([]);
+
+  useEffect(() => {
+    // Acessando localStorage apenas no lado do cliente
+    const pecasData = JSON.parse(localStorage.getItem("pecas")) || [];
+    const fornecedoresData =
+      JSON.parse(localStorage.getItem("fornecedores")) || [];
+    const clientesData = JSON.parse(localStorage.getItem("clientes")) || [];
+    const vendasData = JSON.parse(localStorage.getItem("vendas")) || [];
+    const funcionariosData =
+      JSON.parse(localStorage.getItem("funcionarios")) || [];
+
+    setPecas(pecasData);
+    setFornecedores(fornecedoresData);
+    setClientes(clientesData);
+    setVendas(vendasData);
+    setFuncionarios(funcionariosData);
+  }, []);
+
+  const objeto = [
+    {
+      caminho: "/pecas",
+      quantidade: pecas.length,
+      nome: "Peças",
+      imagem:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHeYXwKChBs534s06O-A6KBF2BAsawiEJ-Rw&s.png",
+    },
+    {
+      caminho: "/fornecedores",
+      quantidade: fornecedores.length,
+      nome: "Fornecedores",
+      imagem:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmi_oX3S5ZYrHXXlF9zY0nOVyQqNAlKoiywg&s.png",
+    },
+    {
+      caminho: "/clientes",
+      quantidade: clientes.length,
+      nome: "Clientes",
+      imagem:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuOEwu8MN8GbrORKVdH8J1RgRCPakFgbuq6w&s.png",
+    },
+    {
+      caminho: "/vendas",
+      quantidade: vendas.length,
+      nome: "Vendas",
+      imagem:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgZ__4bcQBjMSeSMy1y67MbgGdmgUAG7keRg&s.png",
+    },
+    {
+      caminho: "/funcionarios",
+      quantidade: funcionarios.length,
+      nome: "Funcionários",
+      imagem:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTW8886J-6b2G_8tbdHvxHMdSSQp1U8G_p8sQ&s.png",
+    },
+  ];
+
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.js</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+    <Pagina titulo="Amis Auto Peças">
+      <Row md={3} className="g-4">
+        {objeto.map((item, index) => (
+          <Col key={index} className="py-2">
+            <Card className={styles.card}>
+              <Card.Img src={item.imagem} className={styles.cardImage} />
+              <Card.Body className="text-center">
+                <Card.Title className={styles.cardTitle}>
+                  <b>{item.nome}</b>
+                </Card.Title>
+                <p className={styles.cardText}>
+                  Cadastrados: {item.quantidade}
+                </p>
+              </Card.Body>
+              <Card.Footer className={styles.cardFooter}>
+                <Button href={item.caminho} className={styles.button}>
+                  Mais
+                </Button>
+              </Card.Footer>
+            </Card>
+          </Col>
+        ))}
+      </Row>
+    </Pagina>
   );
 }
