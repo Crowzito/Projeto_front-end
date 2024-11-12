@@ -9,7 +9,7 @@ import { v4 } from "uuid";
 import * as Yup from "yup";
 import InputMask from "react-input-mask";
 import Pagina from "@/app/components/Pagina";
-import styles from "@/app/ClientesFormPage.module.css"; // Importa o arquivo de estilo
+import styles from "@/app/ClientesFormPage.module.css";
 
 export default function VendasFormPage(props) {
   const router = useRouter();

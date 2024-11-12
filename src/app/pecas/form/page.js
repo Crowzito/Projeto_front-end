@@ -22,11 +22,11 @@ export default function PecasFormPage(props) {
   const fornecedores = JSON.parse(localStorage.getItem("fornecedores")) || [];
   const pecas = JSON.parse(localStorage.getItem("pecas")) || [];
   const id = props.searchParams.id;
-  const fornecedorEditado = pecas.find((item) => item.id == id);
+  const pecaEditada = pecas.find((item) => item.id == id);
 
   function salvar(dados) {
-    if (fornecedorEditado) {
-      Object.assign(fornecedorEditado, dados);
+    if (pecaEditada) {
+      Object.assign(pecaEditada, dados);
       localStorage.setItem("pecas", JSON.stringify(pecas));
     } else {
       dados.id = v4();
@@ -80,9 +80,9 @@ export default function PecasFormPage(props) {
   }, [fornecedores]);
 
   return (
-    <Pagina titulo="Cadastro de pecas">
+    <Pagina titulo="Cadastro de Peças">
       <Formik
-        initialValues={fornecedorEditado || initialValues}
+        initialValues={pecaEditada || initialValues}
         validationSchema={validationSchema}
         onSubmit={salvar}
       >

@@ -25,7 +25,7 @@ export default function PecasInicialPage() {
   }
 
   return (
-    <Pagina titulo="pecas">
+    <Pagina titulo="Peças">
       <div className="text-end mb-2">
         <Button href="/pecas/form">
           <FaPlusSquare /> Novo
